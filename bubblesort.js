@@ -17,6 +17,9 @@ function bubbleSort(arr) {
 		}
 	} while (swap);
 
-	console.log("That took", comps, "comparisons and", swaps, "swaps.")
+	console.log("Bubble sorting", arr.length.toLocaleString(), "numbers took", comps.toLocaleString(),
+        "comparisons and", swaps.toLocaleString(), "swaps.")
 	return arr;
 }
+
+module.exports = bubbleSort;
