@@ -33,9 +33,12 @@ function merge(left, right){
 		if(left[0] < right[0]){
 			result.push(left[0]);
 			left = left.slice(1);
+            // Doing slice instead of using indexes broke the algorithm.  Massive copies of data.
+            allocs += left.length;
 		} else{
 			result.push(right[0]);
 			right = right.slice(1);
+            allocs += right.length;
 		}
         allocs++;
 	}
