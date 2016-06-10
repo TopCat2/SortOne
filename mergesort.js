@@ -1,6 +1,4 @@
-var comps = 0, swaps = 0, allocs = 0;;
-
-
+var comps = 0, swaps = 0, allocs = 0;
 
 function split(arr){
 	var len = arr.length;
@@ -39,14 +37,16 @@ function merge(left, right){
 			result.push(right[0]);
 			right = right.slice(1);
 		}
+        allocs++;
 	}
-	if(left.length ===0) {
+	if(left.length === 0) {
 		result = result.concat(right);
-	} else if(right.length ===0) {
+        allocs += result.length;
+	} else if(right.length === 0) {
 		result = result.concat(left);
+        allocs += result.length;
 	}
 
-	allocs += result.length;
 	return result;
 }
 

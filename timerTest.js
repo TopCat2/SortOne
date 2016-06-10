@@ -4,6 +4,7 @@
 
 var bubbleSort = require('./bubblesort');
 var mergeSort = require('./mergesort');
+
 for (var i = 9; i <= 12; i++) {
     var numItems = Math.pow(2, i);
     var nativeTestArray = [];
