@@ -4,6 +4,7 @@
 
 var bubbleSort = require('./bubblesort');
 var mergeSort = require('./mergesort');
+var quickSort = require('./quicksort');
 
 for (var i = 9; i <= 12; i++) {
     var numItems = Math.pow(2, i);
@@ -16,6 +17,7 @@ for (var i = 9; i <= 12; i++) {
 
     var bTestArray = nativeTestArray.slice(0);
     var mTestArray = nativeTestArray.slice(0);
+    var qTestArray = nativeTestArray.slice(0);
 
     console.log();
     console.time(numItems + ' native');
@@ -29,4 +31,8 @@ for (var i = 9; i <= 12; i++) {
     console.time(numItems + ' merge');
     mergeSort(mTestArray);
     console.timeEnd(numItems + ' merge');
+
+    console.time(numItems + ' quick');
+    quickSort(qTestArray);
+    console.timeEnd(numItems + ' quick');
 }
