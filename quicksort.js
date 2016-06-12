@@ -1,27 +1,18 @@
 
 
 function quickSort(arr) {
-    var compsP, compsS, swaps, callsP, callsI, rangeP;
-    compsP = 0; // Comparisons done in Partition loop
-    compsS = 0; // Comparisons done in Scanner loop
+    var comps = 0; // Comparisons done in Partition and Scanner loops
     swaps = 0;  // Swap calls
-    callsP = 0; // Calls to Partition
-    callsI = 0; // Calls to inner Quicksort
-    rangeP = 0; // Range of numbers partitioned
-    
+
     var result = quickInner(arr, 0, arr.length - 1);
     console.log("quick sorting", arr.length.toLocaleString(), "numbers took",
-        compsS.toLocaleString(), "scanner comparisons, " +
-        compsP.toLocaleString(), "partition comparisons and", swaps.toLocaleString(), "swaps.");
-    console.log("There were", callsI, "inner quicksort calls and", callsP,
-        "partition calls for a partition range of", rangeP.toLocaleString());
-    console.log("Total comparisons:", (compsP + compsS).toLocaleString());
+        comps.toLocaleString(), " comparisons and", swaps.toLocaleString(), "swaps.");
 
     return result;
 
 
     function quickInner(arr, low, high) {
-        callsI++;
+        // Return if just one number
         if (low >= high) return;
 
         // Partition array.  Find p = where pivotVal ends up.
@@ -34,10 +25,7 @@ function quickSort(arr) {
 
 
     function partition(arr, low, high) {
-        var rangeBefore = rangeP;
-        var compsBefore = compsP + compsS;
-        callsP++;
-        rangeP += high - low + 1;
+        // Don't partition just one number
         if (low >= high) return;
         var where = Math.floor((Math.random() * (high - low + 1)) + low);
         var pivot = arr[where];
@@ -45,7 +33,7 @@ function quickSort(arr) {
         var fng = pushFng(arr, low, high, pivot); // Pointer to First Known Good item, or top if not yet moved.
 
         for (var index = low; index < fng; index++) {
-            compsP++;
+            comps++;
             if (arr[index] > pivot) {
                 swap(arr, index, fng - 1);
                 fng = pushFng(arr, low, fng - 1, pivot);
@@ -58,7 +46,7 @@ function quickSort(arr) {
 
     function pushFng(arr, low, now, pivot) {
         for (var i = now; i > low; i--) {
-            compsS++;
+            comps++;
             if (arr[i - 1] < pivot) return i;
         }
         return low;
